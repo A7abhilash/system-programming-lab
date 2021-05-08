@@ -21,7 +21,7 @@ int main(){
     read(0,buf,30);
     sprintf(psm,"%s",buf);
 
-    //To detach the shared memory segement from the address space of the calling process
+    //To detach the shared memory segment from the address space of the calling process
     shmdt(psm);
 
     return 0;

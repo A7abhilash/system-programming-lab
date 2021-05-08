@@ -13,6 +13,7 @@ int main(){
 }
 
 /*
+    Enter some text to display:
     hello world
     n=12
     hello world

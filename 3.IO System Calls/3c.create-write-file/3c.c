@@ -21,3 +21,10 @@ int main(){
 
     return 0;
 }
+
+/*
+    File Descriptor: 3
+    Enter some text to write onto file:
+    Hello World 10  
+    n=15
+*/
