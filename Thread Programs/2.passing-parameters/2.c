@@ -53,7 +53,7 @@ int main(int argsCount,char* args[]){
 	return 0;
 }
 
-/*
+/*	./a.out 5
 	Inside add func.
 	Add func completed
 	Inside mul func.

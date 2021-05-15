@@ -20,7 +20,7 @@ int main(){
 	//pthread_join(T,NULL); //Main thread waits until child thread finishes
 	
 	printf("Inside main thread.\n");
-	for (i = 10; i <= 15;i++){
+	for (i = 11; i <= 15;i++){
 		printf("i = %d\n", i);
 		sleep(1);
 	}
