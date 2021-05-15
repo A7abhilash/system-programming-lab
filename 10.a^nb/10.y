@@ -1,17 +1,28 @@
 %{
-#include<stdio.h>
+	#include<stdio.h>
+	#include<stdlib.h>
+	
+	int yylex();
+	void yyerror(char *msg);
 %}
 
-%token A CO ZA ER ERR
+%token A B NL
 
 %%
-start:CO {printf("VAlid declaration");}
+start: AN B NL {printf("String accepted\n"); exit(0);}
+	;
+AN: A AN
+	|
+	;
 %%
 
-void yyerror(const char *str){printf("error");}
+void yyerror(char *msg) {
+	printf("String rejected\n");
+	exit(0);
+}
 
-int yywrap(){return 0;}
-
-main(){
-    yyparse();
+int main() {
+	printf("Enter string of a's and b's:\n");
+	yyparse();
+	return 0;
 }

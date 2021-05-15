@@ -1,17 +1,14 @@
 %{
-#include<stdio.h>
+	#include"an_b.tab.h"
 %}
 
-%token A CO ZA ER ERR
-
 %%
-start:CO {printf("Valid declaration");}
+[a] {return A;}
+[b] {return B;}
+[ \t] ; // Ignore spaces and tabs
+\n {return NL;}
+. {return yytext[0];}
 %%
 
-void yyerror(const char *str){printf("error");}
+int yywrap() {return 1;}
 
-int yywrap(){return 0;}
-
-main(){
-    yyparse();
-}
