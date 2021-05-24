@@ -18,7 +18,7 @@ typedef struct {
 
 void sortAccordingToArrivalTime(process readyQueue[]){
 	//Insertion sort
-	int i,j,count=0;
+	int i,j;
 	process key;
 
 	for(i=0;i<SIZE;i++){
@@ -28,7 +28,6 @@ void sortAccordingToArrivalTime(process readyQueue[]){
 		while(j>=0 && readyQueue[j].arrivalTime>key.arrivalTime){
 			readyQueue[j+1]=readyQueue[j];
 			j=j-1;
-            count++;
 		}
 		
 		readyQueue[j+1]=key;
@@ -93,16 +92,13 @@ void main(){
 	}
 
 	sortAccordingToArrivalTime(Q.readyQueue);
-	// printf("Sorted Array: \n");
-	// for(i=0;i<n;i++)
-	// 	printf("%d \n",Q.readyQueue[i].pid);
 	find_CT_TT_WT(Q.readyQueue);
 	Q.avgTurnaroundTime = find_AvgTT(Q);
 	Q.avgWaitingTime = find_AvgWT(Q);
 	display(Q);
 }
 
-/*
+/*	OUTPUT:
 	PID: 1
 	Enter the arrival time: 4
 	Enter the burst time: 5
