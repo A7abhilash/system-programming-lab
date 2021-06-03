@@ -1,0 +1,69 @@
+VALID INPUTS: 'da', 'bda', 'dc', 'bda' only.
+***************************************************
+Enter string to parse :da
+Parse Stack     Action
+-------------------------------------------
+0               Initially
+04              Shift 4
+02              Reduce using production P -> d
+025             Shift 5
+01              Reduce using production S -> Pa
+
+***Valid input***
+***************************************************
+Enter string to parse :bda
+Parse Stack     Action
+-------------------------------------------     
+0               Initially
+03              Shift 3
+037             Shift 7
+03710           Shift 10
+01              Reduce using production S -> bda
+
+***Valid input***
+***************************************************
+Enter string to parse :dc
+Parse Stack     Action
+-------------------------------------------
+0               Initially
+04              Shift 4
+048             Shift 8
+01              Reduce using production S -> dc
+
+***Valid input***
+
+//INVALID INPUTS
+***************************************************
+Enter string to parse :abc
+Parse Stack     Action
+-------------------------------------------
+0               Initially
+Encountered error while parsing : Unexpected token <A>
+abc
+ ^ Parse error
+
+***Invalid input***
+***************************************************
+Enter string to parse :bac
+Parse Stack     Action
+-------------------------------------------
+0               Initially
+03              Shift 3
+Encountered error while parsing : Unexpected token <A>
+bac
+  ^ Parse error
+
+***Invalid input***
+***************************************************
+Enter string to parse :bdabc
+Parse Stack     Action
+-------------------------------------------
+0               Initially
+03              Shift 3
+037             Shift 7
+03710           Shift 10
+Encountered error while parsing : Unexpected token <B>
+bdabc
+    ^ Parse error
+
+***Invalid input***
