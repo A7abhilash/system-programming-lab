@@ -1,69 +1,188 @@
-VALID INPUTS: 'da', 'bda', 'dc', 'bda' only.
-***************************************************
-Enter string to parse :da
-Parse Stack     Action
--------------------------------------------
-0               Initially
-04              Shift 4
-02              Reduce using production P -> d
-025             Shift 5
-01              Reduce using production S -> Pa
+******************Common*to*all******************
+Generated LR(1) Items: 
+State I0
+[[S' -> .S , $]]       
+[[S -> .Pa , $]]       
+[[S -> .bPc , $]]      
+[[S -> .dc , $]]       
+[[S -> .bda , $]]      
+[[P -> .d , a]]        
+-------
 
-***Valid input***
-***************************************************
-Enter string to parse :bda
-Parse Stack     Action
--------------------------------------------     
-0               Initially
-03              Shift 3
-037             Shift 7
-03710           Shift 10
-01              Reduce using production S -> bda
+State I1
+[[S' -> S. , $]]       
+-------
 
-***Valid input***
-***************************************************
-Enter string to parse :dc
-Parse Stack     Action
--------------------------------------------
-0               Initially
-04              Shift 4
-048             Shift 8
-01              Reduce using production S -> dc
+State I2
+[[S -> P.a , $]]       
+-------
 
-***Valid input***
+State I3
+[[S -> b.Pc , $]]      
+[[S -> b.da , $]]      
+[[P -> .d , c]]
+-------        
+
+State I4       
+[[S -> d.c , $]]
+[[P -> d. , a]]
+-------
+
+State I5
+[[S -> Pa. , $]]
+-------
+
+State I6
+[[S -> bP.c , $]]
+-------
+
+State I7
+[[S -> bd.a , $]]
+[[P -> d. , c]]
+-------
+
+State I8
+[[S -> dc. , $]]
+-------
+
+State I9
+[[S -> bPc. , $]]
+-------
+
+State I10
+[[S -> bda. , $]]
+-------
+
+CLR Parse table :
+state   +       *       (       )       id      $       E       T       F
+0               s3              s4              1       2
+1                                       acc
+2       s5
+3                               s7                      6
+4       r5              s8
+5                                       r1
+6                       s9
+7       s10             r5
+8                                       r3
+9                                       r2
+10                                      r4
+
+LALR Groupings from CLR Items:
+0 = 0
+1 = 1
+2 = 2
+3 = 3
+4 = 4
+5 = 5
+6 = 6
+7 = 7
+8 = 8
+9 = 9
+10 = 10
+
+LALR Parse table:
+state   +       *       (       )       id      $       E       T       F
+0               s3              s4              1       2
+1                                       acc
+2       s5
+3                               s7                      6
+4       r5              s8
+5                                       r1
+6                       s9
+7       s10             r5
+8                                       r3
+9                                       r2
+10                                      r4
+
+//VALID INPUTS
+************************************************
+Enter string to parse: bda
+Stack                    Current Token            Input                    Action
+[ 0 ]                    -                        bda $                    -
+[ 0 3 ]                  <B>                      da $                     Shift to 3
+[ 0 3 7 ]                <D>                      a $                      Shift to 7
+[ 0 3 7 10 ]             <A>                       $                       Shift to 10
+[ 0 1 ]                  <$>                       $                       Reduce by S -> bda
+[ 0 1 ]                  <$>                       $                       Accepted
+
+The parse tree for the string is :
+S
+|
+.--.--.
+|  |  |
+b  d  a
+************************************************
+Enter string to parse: da
+Stack                    Current Token            Input                    Action
+[ 0 ]                    -                        da $                     -
+[ 0 4 ]                  <D>                      a $                      Shift to 4
+[ 0 2 ]                  <A>                       $                       Reduce by P -> d
+[ 0 2 5 ]                <A>                       $                       Shift to 5
+[ 0 1 ]                  <$>                       $                       Reduce by S -> Pa
+[ 0 1 ]                  <$>                       $                       Accepted
+
+The parse tree for the string is :
+S
+|
+.--.
+|  |
+P  a
+|
+.
+|
+d
+************************************************
+Enter string to parse: bdc
+Stack                    Current Token            Input                    Action
+[ 0 ]                    -                        bdc $                    -
+[ 0 3 ]                  <B>                      dc $                     Shift to 3
+[ 0 3 7 ]                <D>                      c $                      Shift to 7
+[ 0 3 6 ]                <C>                       $                       Reduce by P -> d
+[ 0 3 6 9 ]              <C>                       $                       Shift to 9
+[ 0 1 ]                  <$>                       $                       Reduce by S -> bPc       
+[ 0 1 ]                  <$>                       $                       Accepted
+
+The parse tree for the string is :
+S
+|
+.--.--.
+|  |  |
+b  P  c
+   |
+   .
+   |
+   d
+************************************************
+Enter string to parse: dc
+Stack                    Current Token            Input                    Action
+[ 0 ]                    -                        dc $                     -
+[ 0 4 ]                  <D>                      c $                      Shift to 4
+[ 0 4 8 ]                <C>                       $                       Shift to 8
+[ 0 1 ]                  <$>                       $                       Reduce by S -> dc
+[ 0 1 ]                  <$>                       $                       Accepted
+
+The parse tree for the string is :
+S
+|
+.--.
+|  |
+d  c
 
 //INVALID INPUTS
-***************************************************
-Enter string to parse :abc
-Parse Stack     Action
--------------------------------------------
-0               Initially
-Encountered error while parsing : Unexpected token <A>
-abc
- ^ Parse error
-
-***Invalid input***
-***************************************************
-Enter string to parse :bac
-Parse Stack     Action
--------------------------------------------
-0               Initially
-03              Shift 3
+************************************************
+Enter string to parse: bdb
+Stack                    Current Token            Input                    Action
+[ 0 ]                    -                        bdb $                    -
+[ 0 3 ]                  <B>                      db $                     Shift to 3
+[ 0 3 7 ]                <D>                      b $                      Shift to 7
+Encountered error while parsing : Unexpected token <B>
+bdb
+   ^ Parse error
+************************************************
+Enter string to parse: bac
+Stack                    Current Token            Input                    Action
+[ 0 ]                    -                        bac $                    -
+[ 0 3 ]                  <B>                      ac $                     Shift to 3
 Encountered error while parsing : Unexpected token <A>
 bac
   ^ Parse error
-
-***Invalid input***
-***************************************************
-Enter string to parse :bdabc
-Parse Stack     Action
--------------------------------------------
-0               Initially
-03              Shift 3
-037             Shift 7
-03710           Shift 10
-Encountered error while parsing : Unexpected token <B>
-bdabc
-    ^ Parse error
-
-***Invalid input***
